@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ActivityTypeLegendRouteImport } from './routes/ActivityTypeLegend'
+import { Route as ComplianceMetricsRouteImport } from './routes/ComplianceMetrics'
+import { Route as SidePanelRouteImport } from './routes/SidePanel'
+import { Route as CrewCardRouteImport } from './routes/crew-card'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ActivityTypeLegendRoute = ActivityTypeLegendRouteImport.update({
+  id: '/ActivityTypeLegend',
+  path: '/ActivityTypeLegend',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceMetricsRoute = ComplianceMetricsRouteImport.update({
+  id: '/ComplianceMetrics',
+  path: '/ComplianceMetrics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SidePanelRoute = SidePanelRouteImport.update({
+  id: '/SidePanel',
+  path: '/SidePanel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CrewCardRoute = CrewCardRouteImport.update({
+  id: '/crew-card',
+  path: '/crew-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
+  '/ComplianceMetrics': typeof ComplianceMetricsRoute
+  '/SidePanel': typeof SidePanelRoute
+  '/crew-card': typeof CrewCardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
+  '/ComplianceMetrics': typeof ComplianceMetricsRoute
+  '/SidePanel': typeof SidePanelRoute
+  '/crew-card': typeof CrewCardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
+  '/ComplianceMetrics': typeof ComplianceMetricsRoute
+  '/SidePanel': typeof SidePanelRoute
+  '/crew-card': typeof CrewCardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ActivityTypeLegend'
+    | '/ComplianceMetrics'
+    | '/SidePanel'
+    | '/crew-card'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ActivityTypeLegend'
+    | '/ComplianceMetrics'
+    | '/SidePanel'
+    | '/crew-card'
+  id:
+    | '__root__'
+    | '/'
+    | '/ActivityTypeLegend'
+    | '/ComplianceMetrics'
+    | '/SidePanel'
+    | '/crew-card'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActivityTypeLegendRoute: typeof ActivityTypeLegendRoute
+  ComplianceMetricsRoute: typeof ComplianceMetricsRoute
+  SidePanelRoute: typeof SidePanelRoute
+  CrewCardRoute: typeof CrewCardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ActivityTypeLegend': {
+      id: '/ActivityTypeLegend'
+      path: '/ActivityTypeLegend'
+      fullPath: '/ActivityTypeLegend'
+      preLoaderRoute: typeof ActivityTypeLegendRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ComplianceMetrics': {
+      id: '/ComplianceMetrics'
+      path: '/ComplianceMetrics'
+      fullPath: '/ComplianceMetrics'
+      preLoaderRoute: typeof ComplianceMetricsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/SidePanel': {
+      id: '/SidePanel'
+      path: '/SidePanel'
+      fullPath: '/SidePanel'
+      preLoaderRoute: typeof SidePanelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/crew-card': {
+      id: '/crew-card'
+      path: '/crew-card'
+      fullPath: '/crew-card'
+      preLoaderRoute: typeof CrewCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActivityTypeLegendRoute: ActivityTypeLegendRoute,
+  ComplianceMetricsRoute: ComplianceMetricsRoute,
+  SidePanelRoute: SidePanelRoute,
+  CrewCardRoute: CrewCardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

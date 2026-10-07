@@ -2,7 +2,8 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
-import { ConfigProvider, type ThemeConfig } from "antd";
+import themeAntd from "#/theme/themeAntd";
+import { ConfigProvider } from "antd";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -29,13 +30,6 @@ export const Route = createRootRoute({
   shellComponent: RootDocument,
 });
 
-export const config: ThemeConfig = {
-  token: {
-    colorPrimary: "oklch(78.9% 0.154 211.53)",
-    colorPrimaryActive: "oklch(90.1% 0.058 230.902)",
-  },
-};
-
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -43,7 +37,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ConfigProvider theme={config}>
+        <ConfigProvider theme={themeAntd}>
           {children}
           <TanStackDevtools
             config={{

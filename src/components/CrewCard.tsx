@@ -7,13 +7,14 @@ type AntdToken = ReturnType<typeof theme.useToken>["token"];
 
 type GetStatusStyle = (token: AntdToken) => Record<CrewStatus, CSSProperties>;
 
-export interface CrewCardProps {
+interface CrewCardProps {
   crewName: string;
   crewRole: string;
   employeeCode: string;
   baseLocation: string;
   avatarUrl?: string;
   status?: CrewStatus;
+  className?: string;
 }
 
 const getStatusStyle: GetStatusStyle = (token) => ({
@@ -38,6 +39,7 @@ export default function CrewCard({
   baseLocation,
   avatarUrl,
   status,
+  className,
 }: CrewCardProps) {
   const { token } = theme.useToken();
 
@@ -46,7 +48,13 @@ export default function CrewCard({
   const avatarFallback = crewName.slice(0, 2).toUpperCase();
 
   return (
-    <Card size="small" variant="outlined" style={status && statusStyle[status]}>
+    <Card
+      style={status && statusStyle[status]}
+      className={className}
+      variant="outlined"
+      size="small"
+      hoverable
+    >
       <Flex align="center" gap={12}>
         <Avatar size={32} src={avatarUrl} alt={crewName}>
           {avatarFallback}

@@ -8,30 +8,41 @@ export const Route = createFileRoute("/crew-card")({
 
 function RouteComponent() {
   return (
-    <Flex gap="medium" justify="center" align="center" className="min-h-svh">
+    <Flex gap="medium" justify="center" align="center" className="flex-1">
       <CrewCard
-        crewName="crewName"
-        crewRole="crewRole"
-        employeeCode="employeeCode"
-        baseLocation="baseLocation"
+        variant="OK"
+        baseLocation="SYZ"
+        employeeCode="CRW-001"
+        crewName="ali boorboor"
+        crewRole="first officer"
         avatarUrl="/src/assets/pic.png"
-        status="success"
       />
+
       <CrewCard
-        crewName="crewName"
-        crewRole="crewRole"
-        employeeCode="employeeCode"
-        baseLocation="baseLocation"
+        variant="Warning"
+        baseLocation="SYZ"
+        employeeCode="CRW-001"
+        crewName="ali boorboor"
+        crewRole="first officer"
         avatarUrl="/src/assets/pic.png"
-        status="warning"
       />
+
       <CrewCard
-        crewName="crewName"
-        crewRole="crewRole"
-        employeeCode="employeeCode"
-        baseLocation="baseLocation"
+        variant="Info"
+        baseLocation="SYZ"
+        employeeCode="CRW-001"
+        crewName="ali boorboor"
+        crewRole="first officer"
         avatarUrl="/src/assets/pic.png"
-        status="error"
+      />
+
+      <CrewCard
+        variant="Error"
+        baseLocation="SYZ"
+        employeeCode="CRW-001"
+        crewName="ali boorboor"
+        crewRole="first officer"
+        avatarUrl="/src/assets/pic.png"
       />
     </Flex>
   );

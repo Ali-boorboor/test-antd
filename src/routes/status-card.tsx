@@ -2,13 +2,13 @@ import StatusCard from "#/components/StatusCard";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flex } from "antd";
 
-export const Route = createFileRoute("/ComplianceMetrics")({
+export const Route = createFileRoute("/status-card")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
   return (
-    <div className="min-h-svh grid place-content-center gap-4">
+    <div className="flex-1 grid place-content-center gap-4">
       <Flex gap="medium" justify="center" align="center">
         <StatusCard
           description="of 60h in 7 days"
@@ -34,6 +34,14 @@ function RouteComponent() {
           variant="Warning"
           progressPercent={100}
         />
+
+        <StatusCard
+          description="in selected week"
+          mainText="3 FDP"
+          title="FDP count"
+          variant="Error"
+          progressPercent={100}
+        />
       </Flex>
 
       <Flex gap="medium" justify="center" align="center">
@@ -42,7 +50,6 @@ function RouteComponent() {
           mainText="6h 30m"
           title="Next rest"
           variant="OK"
-          badgeText="next"
         />
 
         <StatusCard
@@ -57,6 +64,13 @@ function RouteComponent() {
           mainText="6 / 7"
           title="Days off"
           variant="Warning"
+        />
+
+        <StatusCard
+          description="monthly minimum"
+          mainText="6 / 7"
+          title="Days off"
+          variant="Error"
         />
       </Flex>
     </div>

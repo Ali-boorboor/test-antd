@@ -5,11 +5,11 @@ import {
   Tag,
   Typography,
   theme,
+  type GlobalToken,
   type TagProps,
 } from "antd";
-import type { GlobalToken } from "antd/es/theme/internal";
 
-type Variant = "OK" | "Warning" | "Info";
+type Variant = "OK" | "Warning" | "Info" | "Error";
 
 type Styles = Record<
   Variant,
@@ -21,27 +21,30 @@ interface StatusCardProps {
   mainText: string;
   variant?: Variant;
   className?: string;
+  badgeText?: string;
   description: string;
   progressPercent?: number;
-  badgeText?: string;
 }
 
 const styles: Styles = {
   OK: { progressColor: "green", tagColor: "green" },
-  Warning: { progressColor: "colorWarning", tagColor: "yellow" },
+  Warning: { progressColor: "gold", tagColor: "gold" },
   Info: { progressColor: "blue", tagColor: "blue" },
+  Error: { progressColor: "volcano", tagColor: "volcano" },
 };
 
 export default function StatusCard({
   title,
   mainText,
-  variant = "OK",
-  badgeText = variant,
-  description,
-  progressPercent,
   className,
+  description,
+  variant = "OK",
+  progressPercent,
+  badgeText = variant,
 }: StatusCardProps) {
   const { token } = theme.useToken();
+
+  const style = styles[variant];
 
   return (
     <Card
@@ -60,7 +63,7 @@ export default function StatusCard({
           </Typography.Text>
 
           <Tag
-            color={styles[variant].tagColor}
+            color={style.tagColor}
             variant="outlined"
             style={{
               fontWeight: 500,
@@ -85,7 +88,7 @@ export default function StatusCard({
 
         {progressPercent && (
           <Progress
-            strokeColor={token[styles[variant].progressColor] as string}
+            strokeColor={token[style.progressColor] as string}
             railColor={token.colorFillSecondary}
             percent={progressPercent}
             style={{ marginTop: 2 }}

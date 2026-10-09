@@ -10,29 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ActivityTypeLegendRouteImport } from './routes/ActivityTypeLegend'
-import { Route as ComplianceMetricsRouteImport } from './routes/ComplianceMetrics'
-import { Route as SidePanelRouteImport } from './routes/SidePanel'
 import { Route as CrewCardRouteImport } from './routes/crew-card'
+import { Route as FilterChipRouteImport } from './routes/filter-chip'
+import { Route as StatusCardRouteImport } from './routes/status-card'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ActivityTypeLegendRoute = ActivityTypeLegendRouteImport.update({
-  id: '/ActivityTypeLegend',
-  path: '/ActivityTypeLegend',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ComplianceMetricsRoute = ComplianceMetricsRouteImport.update({
-  id: '/ComplianceMetrics',
-  path: '/ComplianceMetrics',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SidePanelRoute = SidePanelRouteImport.update({
-  id: '/SidePanel',
-  path: '/SidePanel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CrewCardRoute = CrewCardRouteImport.update({
@@ -40,59 +24,49 @@ const CrewCardRoute = CrewCardRouteImport.update({
   path: '/crew-card',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FilterChipRoute = FilterChipRouteImport.update({
+  id: '/filter-chip',
+  path: '/filter-chip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StatusCardRoute = StatusCardRouteImport.update({
+  id: '/status-card',
+  path: '/status-card',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
-  '/ComplianceMetrics': typeof ComplianceMetricsRoute
-  '/SidePanel': typeof SidePanelRoute
   '/crew-card': typeof CrewCardRoute
+  '/filter-chip': typeof FilterChipRoute
+  '/status-card': typeof StatusCardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
-  '/ComplianceMetrics': typeof ComplianceMetricsRoute
-  '/SidePanel': typeof SidePanelRoute
   '/crew-card': typeof CrewCardRoute
+  '/filter-chip': typeof FilterChipRoute
+  '/status-card': typeof StatusCardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/ActivityTypeLegend': typeof ActivityTypeLegendRoute
-  '/ComplianceMetrics': typeof ComplianceMetricsRoute
-  '/SidePanel': typeof SidePanelRoute
   '/crew-card': typeof CrewCardRoute
+  '/filter-chip': typeof FilterChipRoute
+  '/status-card': typeof StatusCardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/ActivityTypeLegend'
-    | '/ComplianceMetrics'
-    | '/SidePanel'
-    | '/crew-card'
+  fullPaths: '/' | '/crew-card' | '/filter-chip' | '/status-card'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/ActivityTypeLegend'
-    | '/ComplianceMetrics'
-    | '/SidePanel'
-    | '/crew-card'
-  id:
-    | '__root__'
-    | '/'
-    | '/ActivityTypeLegend'
-    | '/ComplianceMetrics'
-    | '/SidePanel'
-    | '/crew-card'
+  to: '/' | '/crew-card' | '/filter-chip' | '/status-card'
+  id: '__root__' | '/' | '/crew-card' | '/filter-chip' | '/status-card'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ActivityTypeLegendRoute: typeof ActivityTypeLegendRoute
-  ComplianceMetricsRoute: typeof ComplianceMetricsRoute
-  SidePanelRoute: typeof SidePanelRoute
   CrewCardRoute: typeof CrewCardRoute
+  FilterChipRoute: typeof FilterChipRoute
+  StatusCardRoute: typeof StatusCardRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,27 +78,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ActivityTypeLegend': {
-      id: '/ActivityTypeLegend'
-      path: '/ActivityTypeLegend'
-      fullPath: '/ActivityTypeLegend'
-      preLoaderRoute: typeof ActivityTypeLegendRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/ComplianceMetrics': {
-      id: '/ComplianceMetrics'
-      path: '/ComplianceMetrics'
-      fullPath: '/ComplianceMetrics'
-      preLoaderRoute: typeof ComplianceMetricsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/SidePanel': {
-      id: '/SidePanel'
-      path: '/SidePanel'
-      fullPath: '/SidePanel'
-      preLoaderRoute: typeof SidePanelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/crew-card': {
       id: '/crew-card'
       path: '/crew-card'
@@ -132,15 +85,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrewCardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/filter-chip': {
+      id: '/filter-chip'
+      path: '/filter-chip'
+      fullPath: '/filter-chip'
+      preLoaderRoute: typeof FilterChipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/status-card': {
+      id: '/status-card'
+      path: '/status-card'
+      fullPath: '/status-card'
+      preLoaderRoute: typeof StatusCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ActivityTypeLegendRoute: ActivityTypeLegendRoute,
-  ComplianceMetricsRoute: ComplianceMetricsRoute,
-  SidePanelRoute: SidePanelRoute,
   CrewCardRoute: CrewCardRoute,
+  FilterChipRoute: FilterChipRoute,
+  StatusCardRoute: StatusCardRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

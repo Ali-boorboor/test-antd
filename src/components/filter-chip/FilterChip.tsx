@@ -1,15 +1,5 @@
-import { Badge, Button, Flex, theme, Typography, type BadgeProps } from "antd";
-import type { ReactNode } from "react";
-
-interface FilterChipProps {
-  text: string;
-  icon: ReactNode;
-  disabled?: boolean;
-  className?: string;
-  isSelected?: boolean;
-  onClick?: () => void;
-  color?: BadgeProps["color"];
-}
+import { Badge, Button, Flex, theme, Typography } from "antd";
+import type { FilterChipProps } from "./FilterChip.types";
 
 export default function FilterChip({
   icon,

@@ -1,4 +1,4 @@
-import StatusCard from "#/components/StatusCard";
+import StatusCard from "#/components/status-card";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flex } from "antd";
 

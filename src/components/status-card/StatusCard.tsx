@@ -1,30 +1,5 @@
-import {
-  Card,
-  Flex,
-  Progress,
-  Tag,
-  Typography,
-  theme,
-  type GlobalToken,
-  type TagProps,
-} from "antd";
-
-type Variant = "OK" | "Warning" | "Info" | "Error";
-
-type Styles = Record<
-  Variant,
-  { progressColor: keyof GlobalToken; tagColor: TagProps["color"] }
->;
-
-interface StatusCardProps {
-  title: string;
-  mainText: string;
-  variant?: Variant;
-  className?: string;
-  badgeText?: string;
-  description: string;
-  progressPercent?: number;
-}
+import { Card, Flex, Progress, Tag, Typography, theme } from "antd";
+import type { StatusCardProps, Styles } from "./StatusCard.types";
 
 const styles: Styles = {
   OK: { progressColor: "green", tagColor: "green" },

@@ -1,4 +1,4 @@
-import CrewCard from "#/components/CrewCard";
+import CrewCard from "#/components/crew-card";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flex } from "antd";
 

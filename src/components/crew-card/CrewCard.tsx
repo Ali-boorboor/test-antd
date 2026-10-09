@@ -1,21 +1,5 @@
-import { Avatar, Card, Flex, theme, Typography, type GlobalToken } from "antd";
-
-type Variant = "OK" | "Warning" | "Info" | "Error";
-
-type Styles = Record<
-  Variant,
-  { backgroundColor: keyof GlobalToken; borderColor: keyof GlobalToken }
->;
-
-interface CrewCardProps {
-  crewName: string;
-  crewRole: string;
-  avatarUrl?: string;
-  variant?: Variant;
-  className?: string;
-  baseLocation: string;
-  employeeCode: string;
-}
+import { Avatar, Card, Flex, theme, Typography } from "antd";
+import type { CrewCardProps, Styles } from "./CrewCard.types";
 
 const styles: Styles = {
   OK: {

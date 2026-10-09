@@ -1,4 +1,4 @@
-import FilterChip from "#/components/FilterChip";
+import FilterChip from "#/components/filter-chip";
 import { MoonOutlined, SendOutlined, SunOutlined } from "@ant-design/icons";
 import { createFileRoute } from "@tanstack/react-router";
 import { Flex } from "antd";

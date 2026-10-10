@@ -1,4 +1,5 @@
-import { CloseOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import Dialog from "#/components/dialog/Dialog";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Button,
@@ -6,7 +7,6 @@ import {
   Form,
   Input,
   Layout,
-  Modal,
   Segmented,
   Select,
   theme,
@@ -15,7 +15,7 @@ import {
 } from "antd";
 import { useState, type ReactNode } from "react";
 
-export const Route = createFileRoute("/course")({
+export const Route = createFileRoute("/course-modal")({
   component: RouteComponent,
 });
 
@@ -51,9 +51,9 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 function RouteComponent() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const { token } = theme.useToken();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -83,7 +83,12 @@ function RouteComponent() {
           />
         </Flex>
       </Layout.Header>
-      <Modal
+
+      <Dialog
+        headerTitle="Add New Course"
+        onCancel={handleCancel}
+        open={isModalOpen}
+        onOk={handleOk}
         footer={
           <Flex justify="flex-end" gap={GAP}>
             <Button
@@ -91,47 +96,17 @@ function RouteComponent() {
               htmlType="submit"
               style={{ flex: 1, fontWeight: 700 }}
             >
-              Create Course
+              Create
             </Button>
 
-            <Button onClick={handleCancel} style={{ flex: 1, fontWeight: 700 }}>
+            <Button style={{ flex: 1, fontWeight: 700 }} onClick={handleCancel}>
               Cancel
             </Button>
           </Flex>
         }
-        styles={{
-          container: { padding: 0, overflow: "hidden" },
-          footer: {
-            margin: 0,
-            padding: 10,
-            backgroundColor: token.colorFillContent,
-          },
-          body: { padding: 10 },
-          header: {
-            backgroundColor: token.colorPrimary,
-            padding: token.padding,
-            margin: 0,
-          },
-        }}
-        closeIcon={<CloseOutlined style={{ color: token.colorPrimaryBg }} />}
-        onOk={handleOk}
-        open={isModalOpen}
-        title={
-          <Typography
-            style={{
-              color: token.colorPrimaryBg,
-              fontWeight: 700,
-            }}
-            component="p"
-          >
-            Add New Course
-          </Typography>
-        }
-        onCancel={handleCancel}
-        mask={{ closable: false }}
       >
         <Form
-          name="basic"
+          id="form"
           layout="horizontal"
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -152,19 +127,18 @@ function RouteComponent() {
           <Form.Item<FieldType>
             label={<Label>Course Name</Label>}
             name="courseName"
-            rules={[
-              { required: true, message: "Please input your course name!" },
-            ]}
+            required
           >
-            <Input />
+            <Input placeholder="Course Name" />
           </Form.Item>
 
           <Form.Item<FieldType>
             name="department"
             label={<Label>Department</Label>}
-            rules={[{ required: true }]}
+            required
           >
             <Select
+              showSearch
               allowClear
               placeholder="Select a Department"
               options={[
@@ -179,13 +153,13 @@ function RouteComponent() {
             label={<Label>Description</Label>}
             name="description"
           >
-            <Input />
+            <Input placeholder="Description" />
           </Form.Item>
 
           <Form.Item<FieldType>
             name="applicability"
             label={<Label>Applicability</Label>}
-            rules={[{ required: true }]}
+            required
           >
             <Select
               allowClear
@@ -201,16 +175,20 @@ function RouteComponent() {
           </Form.Item>
 
           <Form.Item<FieldType> label={<Label>Remark</Label>} name="remark">
-            <Input.TextArea rows={1} style={{ maxHeight: 100 }} />
+            <Input.TextArea
+              rows={1}
+              style={{ maxHeight: 100 }}
+              placeholder="Remark"
+            />
           </Form.Item>
 
           <Form.Item<FieldType>
             label={<Label>Validity</Label>}
-            name="validity"
-            rules={[{ required: true, message: "Please enter a number" }]}
             style={{ position: "relative" }}
+            name="validity"
+            required
           >
-            <Input />
+            <Input placeholder="Validity" maxLength={4} />
 
             <Form.Item<FieldType> name="validityUnit" initialValue="D" noStyle>
               <Segmented<ValidityUnit>
@@ -230,17 +208,17 @@ function RouteComponent() {
           </Form.Item>
 
           <Form.Item<FieldType> label={<Label>Initial</Label>} name="initial">
-            <Input />
+            <Input placeholder="Initial" />
           </Form.Item>
 
           <Form.Item<FieldType>
             label={<Label>Recurrent</Label>}
             name="recurrent"
           >
-            <Input />
+            <Input placeholder="Recurrent" />
           </Form.Item>
         </Form>
-      </Modal>
+      </Dialog>
     </Layout>
   );
 }

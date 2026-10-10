@@ -50,7 +50,7 @@ const items = [
   },
   {
     key: 4,
-    label: <Link to="/course">course</Link>,
+    label: <Link to="/course-modal">course modal</Link>,
   },
 ];
 

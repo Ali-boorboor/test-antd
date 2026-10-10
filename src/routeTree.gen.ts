@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CourseRouteImport } from './routes/course'
+import { Route as CourseModalRouteImport } from './routes/course-modal'
 import { Route as CrewCardRouteImport } from './routes/crew-card'
 import { Route as FilterChipRouteImport } from './routes/filter-chip'
 import { Route as StatusCardRouteImport } from './routes/status-card'
@@ -20,9 +20,9 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CourseRoute = CourseRouteImport.update({
-  id: '/course',
-  path: '/course',
+const CourseModalRoute = CourseModalRouteImport.update({
+  id: '/course-modal',
+  path: '/course-modal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CrewCardRoute = CrewCardRouteImport.update({
@@ -43,14 +43,14 @@ const StatusCardRoute = StatusCardRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/course': typeof CourseRoute
+  '/course-modal': typeof CourseModalRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/course': typeof CourseRoute
+  '/course-modal': typeof CourseModalRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
@@ -58,20 +58,21 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/course': typeof CourseRoute
+  '/course-modal': typeof CourseModalRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/course' | '/crew-card' | '/filter-chip' | '/status-card'
+  fullPaths:
+    '/' | '/course-modal' | '/crew-card' | '/filter-chip' | '/status-card'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/course' | '/crew-card' | '/filter-chip' | '/status-card'
+  to: '/' | '/course-modal' | '/crew-card' | '/filter-chip' | '/status-card'
   id:
     | '__root__'
     | '/'
-    | '/course'
+    | '/course-modal'
     | '/crew-card'
     | '/filter-chip'
     | '/status-card'
@@ -79,7 +80,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CourseRoute: typeof CourseRoute
+  CourseModalRoute: typeof CourseModalRoute
   CrewCardRoute: typeof CrewCardRoute
   FilterChipRoute: typeof FilterChipRoute
   StatusCardRoute: typeof StatusCardRoute
@@ -94,11 +95,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/course': {
-      id: '/course'
-      path: '/course'
-      fullPath: '/course'
-      preLoaderRoute: typeof CourseRouteImport
+    '/course-modal': {
+      id: '/course-modal'
+      path: '/course-modal'
+      fullPath: '/course-modal'
+      preLoaderRoute: typeof CourseModalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/crew-card': {
@@ -127,7 +128,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CourseRoute: CourseRoute,
+  CourseModalRoute: CourseModalRoute,
   CrewCardRoute: CrewCardRoute,
   FilterChipRoute: FilterChipRoute,
   StatusCardRoute: StatusCardRoute,

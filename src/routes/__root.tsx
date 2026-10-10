@@ -48,6 +48,10 @@ const items = [
     key: 3,
     label: <Link to="/status-card">status card</Link>,
   },
+  {
+    key: 4,
+    label: <Link to="/course">course</Link>,
+  },
 ];
 
 function RootDocument({ children }: { children: React.ReactNode }) {

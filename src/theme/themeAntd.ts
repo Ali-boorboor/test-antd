@@ -74,6 +74,10 @@ const themeAntd: ThemeConfig = {
     boxShadowSecondary: "0 4px 12px 0 rgba(37, 51, 119, 0.10)",
   },
   components: {
+    Form: {
+      itemMarginBottom: 4,
+      verticalLabelPadding: 0,
+    },
     Menu: {
       subMenuItemBorderRadius: 6,
       horizontalItemBorderRadius: 6,

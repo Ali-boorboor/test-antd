@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CourseRouteImport } from './routes/course'
 import { Route as CrewCardRouteImport } from './routes/crew-card'
 import { Route as FilterChipRouteImport } from './routes/filter-chip'
 import { Route as StatusCardRouteImport } from './routes/status-card'
@@ -17,6 +18,11 @@ import { Route as StatusCardRouteImport } from './routes/status-card'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CourseRoute = CourseRouteImport.update({
+  id: '/course',
+  path: '/course',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CrewCardRoute = CrewCardRouteImport.update({
@@ -37,12 +43,14 @@ const StatusCardRoute = StatusCardRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/course': typeof CourseRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/course': typeof CourseRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/course': typeof CourseRoute
   '/crew-card': typeof CrewCardRoute
   '/filter-chip': typeof FilterChipRoute
   '/status-card': typeof StatusCardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/crew-card' | '/filter-chip' | '/status-card'
+  fullPaths: '/' | '/course' | '/crew-card' | '/filter-chip' | '/status-card'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/crew-card' | '/filter-chip' | '/status-card'
-  id: '__root__' | '/' | '/crew-card' | '/filter-chip' | '/status-card'
+  to: '/' | '/course' | '/crew-card' | '/filter-chip' | '/status-card'
+  id:
+    | '__root__'
+    | '/'
+    | '/course'
+    | '/crew-card'
+    | '/filter-chip'
+    | '/status-card'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CourseRoute: typeof CourseRoute
   CrewCardRoute: typeof CrewCardRoute
   FilterChipRoute: typeof FilterChipRoute
   StatusCardRoute: typeof StatusCardRoute
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/course': {
+      id: '/course'
+      path: '/course'
+      fullPath: '/course'
+      preLoaderRoute: typeof CourseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/crew-card': {
@@ -104,6 +127,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CourseRoute: CourseRoute,
   CrewCardRoute: CrewCardRoute,
   FilterChipRoute: FilterChipRoute,
   StatusCardRoute: StatusCardRoute,

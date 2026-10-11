@@ -1,4 +1,4 @@
-import Dialog from "#/components/dialog/Dialog";
+import Dialog from "#/components/dialog";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { createFileRoute } from "@tanstack/react-router";
 import {
